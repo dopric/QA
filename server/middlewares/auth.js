@@ -9,13 +9,9 @@ const authenticateUser = (req, res, next) => {
 	const credentials = auth(req)
 
 	if (credentials) {
-		// console.log("credentials are here", credentials)
-		//  { name: 'oprid', pass: 'justtemp' }
-		// console.log(db)
 		UserModel.findOne({ name: credentials.name })
 			.then(function(user) {
-				console.log('User found', user)
-				// u tutorialu je credentials.pass ????
+				// console.log('User found', user)
 				console.log('compare', credentials.name, user.name)
 				const authenicated = bcryptjs.compareSync(credentials.pass, user.password)
 				if (authenicated) {
@@ -40,7 +36,11 @@ const authenticateUser = (req, res, next) => {
                 })
 			})
 	} else {
-		message = 'Auth header missing'
+		res.status(401).json(
+            { 
+                message: 'Zugriff verweigert',
+                reason: 'Authentication header not provided' 
+        })
 	}
 
 }
