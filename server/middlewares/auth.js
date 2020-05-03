@@ -1,6 +1,5 @@
 const auth = require('basic-auth')
 const bcryptjs = require('bcryptjs')
-const users = require('../config/dummydata')
 const db = require('../db')
 const UserModel = require('../models/user')
 

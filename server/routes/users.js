@@ -1,10 +1,8 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcryptjs =require('bcryptjs')
-const {SALT} = require('../config/auth')
 const router = express.Router()
 const {authenticateUser} = require('../middlewares/auth')
-const users = require('../config/dummydata')
 
 const db = require('../db')
 const UserModel = require('../models/user')
